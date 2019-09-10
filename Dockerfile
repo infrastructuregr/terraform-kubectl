@@ -1,4 +1,4 @@
-FROM hashicorp/packer:light
+FROM hashicorp/terraform:light
 
 ENV KUBECTL_VER v1.15.3
 
