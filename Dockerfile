@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:0.12.13
+FROM hashicorp/terraform:0.12.15
 
 ENV KUBECTL_VER v1.16.0
 WORKDIR /tmp
