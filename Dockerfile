@@ -1,11 +1,12 @@
 FROM hashicorp/terraform:0.12.20
 
-ENV KUBECTL_VER v1.16.0
 WORKDIR /tmp
 
 RUN apk add --update --no-cache curl ca-certificates
+RUN curl -sLO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
 
-ADD https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VER/bin/linux/amd64/kubectl /usr/bin/kubectl
-RUN chmod +x /usr/bin/kubectl
+RUN mv ./kubectl /usr/bin/kubectl \
+    && chmod +x /usr/bin/kubectl \
+    && kubectl version --short --client
 
 ENTRYPOINT ["/bin/sh","-c"]
